@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Department</title>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body class="d-flex flex-column h-100">
+
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container">
+    <form th:action="@{/department/add}" th:object="${department}" method="POST">
+        <div class="form-group">
+            <label for="name" class="col-form-label">Name</label>
+            <input type="text" th:field="${department.name}" class="form-control" pattern="([A-Z][a-z]{1,30}( |\b)){1,4}" id="name" name="name" required>
+        </div>
+        <hr/>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">Add</button>
+        </div>
+    </form>
+</div>
+</body>
+
+<div th:insert="blocks/footer :: footer"></div>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Employees</title>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body class="d-flex flex-column h-100">
+
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container">
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Email</th>
+            <th scope="col">Name</th>
+            <th scope="col">Birthday</th>
+            <th scope="col">Payment</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="el : ${employees}">
+                <th scope="row" th:text="${el.id}"></th>
+                <td th:text="${el.email}"></td>
+                <td th:text="${el.name}"></td>
+                <td th:text="${el.birthday}"></td>
+                <td th:text="${el.payment} + '$'"></td>
+                <td>
+                    <div class="d-flex justify-content-center">
+                        <a th:href="'/employee/' + ${el.id} + '/edit'" class="btn btn-primary btn-sm mr-3">edit</a>
+                        <a th:href="'/employee/' + ${el.id} + '/remove'" class="btn btn-primary btn-sm">remove</a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <hr/>
+    <a th:href="'/employee/' + ${departmentId} + '/add'" class="btn btn-primary btn-block">Add</a>
+</div>
+
+<div th:insert="blocks/footer :: footer"></div>
+
+</body>
+</html>
